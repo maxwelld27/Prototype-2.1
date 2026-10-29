@@ -8,6 +8,8 @@ public class PlayerController : MonoBehaviour
     //Make a variable for the player's speed
     public float speed = 10.0f;
     public float horizontalInput;
+
+     public GameObject projectilePrefab;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,7 +34,11 @@ public class PlayerController : MonoBehaviour
         // Move the player left and right based left and right arrow keys
         horizontalInput = Input.GetAxis("Horizontal");
         transform.Translate(Vector3.right * horizontalInput * Time.deltaTime * speed);
-
+        if(Input.GetKeyDown(KeyCode.Space))
+        {
+            // Launch a projectile from the player
+            Instantiate(projectilePrefab, transform.position, projectilePrefab.transform.rotation);
+        }
 
         
        
